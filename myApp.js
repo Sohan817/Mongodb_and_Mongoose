@@ -71,3 +71,15 @@ async function findPeopleByNameAge(name, age) {
 }
 
 findPeopleByNameAge("John", 26);
+
+//Find one person by favourite food with model.findOne()
+async function findOnePersonByFavouriteFood(food) {
+  try {
+    const data = await Person.findOne({ favouriteFoods: { $all: [food] } });
+    console.log(data);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
+findOnePersonByFavouriteFood("pizza", "Burger");
