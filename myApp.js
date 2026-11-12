@@ -19,13 +19,21 @@ let personScema = new mongoose.Schema({
 //Model
 let Person = mongoose.model("Person", personScema);
 
-let dev = new Person({
-  name: "John",
-  age: 27,
-  favouriteFoods: ["Pizza", "Burger"],
-});
+async function createSavePerson() {
+  try {
+    let person = await Person.create({
+      name: "John",
+      age: 27,
+      favouriteFoods: ["Pizza", "Burger"],
+    });
+  } catch (err) {
+    console.log(err.message);
+  } finally {
+    mongoose.disconnect();
+  }
+}
 
-console.log(dev);
+createSavePerson();
 // const createAndSavePerson = (done) => {
 //   done(null /*, data*/);
 // };
