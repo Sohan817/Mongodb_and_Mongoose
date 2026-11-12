@@ -83,3 +83,15 @@ async function findOnePersonByFavouriteFood(food) {
 }
 
 findOnePersonByFavouriteFood("pizza", "Burger");
+
+//find a person by ID with model.findById()
+async function findPersonById(id) {
+  try {
+    const data = await Person.findById(id);
+    console.log(data);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
+findPersonById("6af5d0f944a66f9307f37374");
