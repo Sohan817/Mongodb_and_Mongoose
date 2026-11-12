@@ -19,9 +19,11 @@ let personScema = new mongoose.Schema({
 //Model
 let Person = mongoose.model("Person", personScema);
 
+//Create and Save a Person
+
 async function createSavePerson() {
   try {
-    let person = await Person.create({
+    await Person.create({
       name: "John",
       age: 27,
       favouriteFoods: ["Pizza", "Burger"],
@@ -34,6 +36,30 @@ async function createSavePerson() {
 }
 
 createSavePerson();
+
+//OR
+const user = new Person({ name: "Bob", email: "bob@example.com", age: 30 });
+user.save();
+
+//Create Many People with model.insertMany()
+
+const arrayOfPeople = [
+  { name: "Alice", age: 25, favouriteFoods: ["Pasta", "Salad"] },
+  { name: "Bob", age: 30, favouriteFoods: ["Steak", "Fries"] },
+  { name: "Charlie", age: 22, favouriteFoods: ["Sushi", "Ramen"] },
+];
+
+async function createManyPeople() {
+  try {
+    await Person.insertMany(arrayOfPeople);
+  } catch (err) {
+    console.log(err.message);
+  } finally {
+    mongoose.disconnect();
+  }
+}
+createManyPeople();
+
 // const createAndSavePerson = (done) => {
 //   done(null /*, data*/);
 // };
