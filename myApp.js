@@ -161,4 +161,15 @@ async function removePersonById(id) {
     console.log(err.message);
   }
 }
-removePersonById("6af5d0f944a66f9307f37373");
+//removePersonById("6af5d0f944a66f9307f37373");
+
+//Conditionl remove using model.remove()
+async function removePeopleByAge(age) {
+  try {
+    const data = await Person.deleteMany({ age: { $gte: age } });
+    console.log(data);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+removePeopleByAge(28);
