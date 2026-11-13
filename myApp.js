@@ -150,4 +150,15 @@ async function removePerson(name) {
     console.log(err.message);
   }
 }
-removePerson("John");
+//removePerson("John");
+
+//Remove a record using model.findByIdAndRemove()
+async function removePersonById(id) {
+  try {
+    const data = await Person.findByIdAndDelete(id);
+    console.log(data);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+removePersonById("6af5d0f944a66f9307f37373");
