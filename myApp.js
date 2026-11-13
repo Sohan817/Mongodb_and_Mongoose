@@ -38,7 +38,11 @@ async function createSavePerson() {
 //createSavePerson();
 
 //OR
-const user = new Person({ name: "Bob", email: "bob@example.com", age: 30 });
+const user = new Person({
+  name: "Robert",
+  age: 20,
+  favouriteFoods: ["Pasta", "Salad"],
+});
 //user.save();
 
 //Create Many People with model.insertMany()
@@ -172,4 +176,19 @@ async function removePeopleByAge(age) {
     console.log(err.message);
   }
 }
-removePeopleByAge(28);
+//removePeopleByAge(28);
+
+//Chain search query helpers to narrow search results
+async function chainSearchQuery(food) {
+  try {
+    const data = await Person.find({ favouriteFoods: food })
+      .sort({ age: "asc" }) //(- used for decending sort or desc)
+      .limit(2)
+      .select("namme age"); //used for select any field (-field) used for exclude;
+    console.log(data);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
+chainSearchQuery("Salad");
