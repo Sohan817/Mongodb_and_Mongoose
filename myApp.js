@@ -70,7 +70,7 @@ async function findPeopleByNameAge(name, age) {
   }
 }
 
-findPeopleByNameAge("John", 26);
+//findPeopleByNameAge("John", 26);
 
 //Find one person by favourite food with model.findOne()
 async function findOnePersonByFavouriteFood(food) {
@@ -82,7 +82,7 @@ async function findOnePersonByFavouriteFood(food) {
   }
 }
 
-findOnePersonByFavouriteFood("pizza", "Burger");
+//findOnePersonByFavouriteFood("pizza", "Burger");
 
 //find a person by ID with model.findById()
 async function findPersonById(id) {
@@ -94,7 +94,7 @@ async function findPersonById(id) {
   }
 }
 
-findPersonById("6af5d0f944a66f9307f37374");
+//findPersonById("6af5d0f944a66f9307f37374");
 
 //Update record
 async function updatePerson(id, newAge, newFood) {
@@ -109,4 +109,34 @@ async function updatePerson(id, newAge, newFood) {
   }
 }
 
-updatePerson("6af5d0f944a66f9307f37374", 28, "Ice Cream");
+//updatePerson("6af5d0f944a66f9307f37374", 28, "Ice Cream");
+
+//Update a record using model.findOneAndUpdate()
+async function updatePersonByFindOneAndUpdate(name, newAge) {
+  try {
+    const data = await Person.findOneAndUpdate(
+      { name: name },
+      { age: newAge },
+      { new: true },
+    );
+    console.log(data);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+//updatePersonByFindOneAndUpdate("John", 29);
+
+//Update a record using model.findByIdAndUpdate()
+async function updatePersonByFindByIdAndUpdate(id, newAge) {
+  try {
+    const data = await Person.findByIdAndUpdate(
+      id,
+      { age: newAge },
+      { new: true },
+    );
+    console.log(data);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+updatePersonByFindByIdAndUpdate("6af5d0f944a66f9307f37376", 29);
