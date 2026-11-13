@@ -139,4 +139,15 @@ async function updatePersonByFindByIdAndUpdate(id, newAge) {
     console.log(err.message);
   }
 }
-updatePersonByFindByIdAndUpdate("6af5d0f944a66f9307f37376", 29);
+//updatePersonByFindByIdAndUpdate("6af5d0f944a66f9307f37376", 29);
+
+//Remove a record using model.findOneAndRemove()
+async function removePerson(name) {
+  try {
+    const data = await Person.findOneAndDelete({ name: name });
+    console.log(data);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+removePerson("John");
