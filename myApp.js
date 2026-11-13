@@ -95,3 +95,18 @@ async function findPersonById(id) {
 }
 
 findPersonById("6af5d0f944a66f9307f37374");
+
+//Update record
+async function updatePerson(id, newAge, newFood) {
+  try {
+    const data = await Person.findOne({ _id: id });
+    data.age = newAge;
+    data.favouriteFoods.push(newFood);
+    await data.save();
+    console.log(data);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
+updatePerson("6af5d0f944a66f9307f37374", 28, "Ice Cream");
